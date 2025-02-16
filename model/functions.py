@@ -35,3 +35,16 @@ def has_points_in_surface(surface, points):
                            np.all(cross <= 0, axis=1))
     
     return inside
+
+def compute_reflection_vector(incident_vector, normal_vector):
+    """
+    入射ベクトルと法線ベクトルをもとに、反射ベクトルを計算する関数。
+
+    Parameters:
+        incident_vectors (np.ndarray): 入射ベクトル (N, 3) の形状を持つ配列
+        normal_vectors (np.ndarray): 法線ベクトル (N, 3) の形状を持つ配列（正規化済み）
+
+    Returns:
+        np.ndarray: 反射ベクトル (N, 3) の形状を持つ配列
+    """
+    return incident_vector - 2 * np.dot(incident_vector, normal_vector) * normal_vector
